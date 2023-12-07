@@ -12,8 +12,16 @@ const Shirt = () => {
   const logoTexture = useTexture(snap.logoDecal);
   const fullTexture = useTexture(snap.fullDecal);
 
+  // Display textures smoothly
+  useFrame((_, delta) => {
+    easing.dampC(materials.lambert1, snap.colour, 0.25, delta);
+  });
+
+  // Track state changes and apply to group
+  const stateString = JSON.stringify(snap);
+
   return (
-    <group>
+    <group key={stateString}>
       <mesh castShadow geometry={nodes.T_Shirt_male.geometry} material={materials.lambert1} material-roughness={1} dispose={null}>
         {/* Check for full texture */}
         {snap.isFullTexture && (
