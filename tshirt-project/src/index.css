@@ -63,6 +63,10 @@ html {
   @apply w-14 h-14 flex justify-center items-center cursor-pointer select-none;
 }
 
+.core-btn-styles {
+  @apply w-fit px-4 py-2.5 font-bold text-sm;
+}
+
 .glassmorphism {
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 2px 30px 0 rgba(31, 38, 135, 0.07);
