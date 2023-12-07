@@ -32,6 +32,12 @@ const Customizer = () => {
           <motion.div className="absolute z-10 top-5 right-5" {...fadeAnimation}>
             <CustomButton type="filled" title="Go Back" handleClick={() => state.intro = true} customStyles="core-btn-styles" />
           </motion.div>
+
+          <motion.div className="filtertabs-container" {...slideAnimation('up')}>
+            {FilterTabs.map((tab) => (
+              <Tab key={tab.name} tab={tab} isFilterTab="" isActiveTab="" handleClick={() => {}} />
+            ))}
+          </motion.div>
         </>
       )}
     </AnimatePresence>
