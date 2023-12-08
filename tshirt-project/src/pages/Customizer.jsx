@@ -30,7 +30,10 @@ const Customizer = () => {
       case "colourpicker":
         return <ColourPicker />
       case "filepicker":
-        return <FilePicker />
+        return <FilePicker 
+          file={file}
+          setFile={setFile}
+        />
       case "aipicker":
         return <AIPicker />
       default:
@@ -38,19 +41,33 @@ const Customizer = () => {
     }
   };
 
+
+  const handleTabClick = (tabName, setStateType) => {
+    // Allows minimising of tabs
+    setStateType((prevTab) => (prevTab === tabName ? '' : tabName));
+  }
+
   return (
     <AnimatePresence>
       {/* Check if not on homepage */}
       {!snap.intro && (
         <>
-          <motion.div key="custom" className="absolute top-0 left-0 z-10" {...slideAnimation('left')}>
+          <motion.div 
+            key="custom" 
+            className="absolute top-0 left-0 z-10" 
+            {...slideAnimation('left')}
+          >
             <div className="flex items-center min-h-screen">
               <div className="editortabs-container tabs">
                 {EditorTabs.map((tab) => (
-                  <Tab key={tab.name} tab={tab} handleClick={() => setActiveEditorTab(tab.name)} />
+                  <Tab 
+                    key={tab.name} 
+                    tab={tab} 
+                    handleClick={() => handleTabClick(tab.name, setActiveEditorTab)}
+                  />
                 ))}
 
-                {generateTabContent()}
+                {activeEditorTab && generateTabContent()}
               </div>
             </div>
           </motion.div>
