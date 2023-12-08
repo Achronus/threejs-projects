@@ -14,7 +14,7 @@ const Shirt = () => {
 
   // Display textures smoothly
   useFrame((_, delta) => {
-    easing.dampC(materials.lambert1, snap.colour, 0.25, delta);
+    easing.dampC(materials.lambert1.color, snap.colour, 0.25, delta);
   });
 
   // Track state changes and apply to group
