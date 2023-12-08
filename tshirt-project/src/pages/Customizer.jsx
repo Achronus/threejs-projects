@@ -41,12 +41,6 @@ const Customizer = () => {
     }
   };
 
-
-  const handleTabClick = (tabName, setStateType) => {
-    // Allows minimising of tabs
-    setStateType((prevTab) => (prevTab === tabName ? '' : tabName));
-  }
-
   return (
     <AnimatePresence>
       {/* Check if not on homepage */}
@@ -63,11 +57,13 @@ const Customizer = () => {
                   <Tab 
                     key={tab.name} 
                     tab={tab} 
-                    handleClick={() => handleTabClick(tab.name, setActiveEditorTab)}
+                    handleClick={() => setActiveEditorTab(
+                      (prevTab) => (prevTab === tab.name ? '' : tab.name)
+                    )}
                   />
                 ))}
 
-                {activeEditorTab && generateTabContent()}
+                {generateTabContent()}
               </div>
             </div>
           </motion.div>
